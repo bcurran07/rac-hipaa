@@ -58,3 +58,22 @@ h2 {
     margin-top: 10px;
     padding: 20px 35px;
 }
+
+.glossary {
+    background: #F4F9FA;
+    color: #477483;
+    margin-top: 50px;
+    padding-top: 60px;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 30px;
+}
+
+.link-text {
+    font-weight: bold;
+    cursor: pointer;
+    color: #27A4BB;
+}
