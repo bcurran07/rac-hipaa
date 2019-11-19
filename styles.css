@@ -1,0 +1,55 @@
+body {
+	font-family: Helvetica;
+	font-size: 15px;
+}
+span {
+	font-size: 12px;
+}
+h2 {
+	font-size: 25px;
+	font-weight: bold;
+}
+.horizontal-rule {
+	border: 3px solid #F3F3F3;
+	margin: 20px 0;
+	width: 100%;
+}
+.gray-text {
+	color: #8E8E8E;
+}
+.teal-text {
+	color: #27A4BB;
+}
+.answer-box {
+	border: 1px solid #8E8E8E;
+	color: #27A4BB;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.answer-box-selected {
+	background: #4FD968;
+	color: #FFFFFF;
+	border: none;
+}
+.section-header {
+	margin-top: 50px;
+}
+.pull-right {
+    padding-right: 1px;
+    display: flex;
+    margin-left: auto;
+}
+.gray-background {
+    background: #F7F7F7;
+    padding: 20px 0;
+}
+
+.gray-background > .mx-auto > p {
+    margin-bottom: 0;
+}
