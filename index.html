@@ -75,7 +75,7 @@
 		<div class="row">
 	    	<div class="col-1"></div>
 	    	<div class="col-11 pull-right">
-	    		<div class="gray-background additional-text-2 hidden-text" hidden>
+	    		<div class="gray-background additional-text-3 hidden-text" hidden>
 	    			<p><em>You may be a HIPAA covered entity subject to the HIPAA rules.</em></p>
 	    			<p><a class="teal-text" href="#"><strong>HIPAA PRIVACY RULE</strong></a></p>
 	    			<p><a class="teal-text" href="#"><strong>HIPAA SECURITY RULE</strong></a></p>
@@ -100,7 +100,7 @@
     	<div class="row">
         	<div class="col-1"></div>
         	<div class="col-11 pull-right">
-        		<div class="gray-background additional-text-2 hidden-text" hidden>
+        		<div class="gray-background additional-text-4 hidden-text" hidden>
         			<p><em>You likely are a HIPAA business associate, subject to the HIPAA Security Rule and specific provisions of the HIPAA Privacy and Breach Notification Rules.</em></p>
         			<p><a class="teal-text" href="#"><strong>HIPAA PRIVACY RULE</strong></a></p>
         			<p><a class="teal-text" href="#"><strong>HIPAA SECURITY RULE</strong></a></p>
@@ -156,8 +156,8 @@
         </div>
     	<div class="row">
         	<div class="col-1"></div>
-        	<div class="col-11 pull-right">
-        		<div class="gray-background additional-text-2 hidden-text" hidden>
+        	<div class="col-11">
+        		<div class="gray-background additional-text-7 hidden-text" hidden>
         			<p>The FDA intends to apply its regulatory oversight.</p>
         			<p><a class="teal-text" href="#"><strong>FDA INFORMATION</strong></a></p>
         		</div>
@@ -178,6 +178,23 @@
     	    		<div class="answer-box" title="8">Y</div>
     	    		<div class="answer-box" title="8">N</div>
     	    	</div>
+        	</div>
+        </div>
+    	<div class="row">
+        	<div class="col-1"></div>
+        	<div class="col-11 pull-right">
+        		<div class="gray-background additional-text-8-Y hidden-text" hidden>
+        			<p>The FTC Act does not apply to most nonprofits. It does, though, apply to nonprofits like some trade associations, that provide substantial economic benefits to their members.</p>
+        		</div>
+        	</div>
+        </div>
+    	<div class="row">
+        	<div class="col-1"></div>
+        	<div class="col-11">
+        		<div class="gray-background additional-text-8-N hidden-text" hidden>
+        			<p>It's likely that the FTC Act applies.</p>
+        			<p><a class="teal-text" href="#"><strong>FTC ACT</strong></a></p>
+        		</div>
         	</div>
         </div>
         <div class="row">
@@ -211,7 +228,7 @@
     	<div class="row">
         	<div class="col-1"></div>
         	<div class="col-11 pull-right">
-        		<div class="gray-background additional-text-2 hidden-text" hidden>
+        		<div class="gray-background additional-text-10 hidden-text" hidden>
         			<p>You may be a personal health records (PHR) provider, PHR-related entity, or service provider who must comply with the FTC’s Health Breach Notification Rule. The FTC’s rule does not apply if you are a HIPAA covered entity or to the extent you are acting as a HIPAA business associate.</p>
         			<p><a class="teal-text" href="#"><strong>FTC HEALTH BREACH RULE</strong></a></p>
         		</div>
@@ -266,6 +283,8 @@
     		'2': 'Y',
     		'3': 'Y',
     		'4': 'Y',
+    		'7': 'Y',
+    		'10': 'Y',
     	}
     	const toggleAnswer = e => {
     		if (answers[e.target.title]) {
@@ -273,10 +292,16 @@
     		}
 			answers[e.target.title] = e.target.textContent;
 			$(e.target).toggleClass('answer-box-selected');
+			let selector = `.additional-text-${e.target.title}`;				
 			if (additionalTextMap[e.target.title] === e.target.textContent) {
-				$(`.additional-text-${e.target.title}`).removeAttr('hidden');
+				$(selector).removeAttr('hidden');
 			} else if (additionalTextMap[e.target.title]) {
-				$(`.additional-text-${e.target.title}`).attr('hidden', true);
+				$(selector).attr('hidden', true);
+			} else if (e.target.title === '8') {
+				selector = `.additional-text-${e.target.title}-${e.target.textContent}`;
+				const antiSelector = `.additional-text-${e.target.title}-${e.target.textContent === 'Y' ? 'N' : 'Y'}`;
+				$(selector).removeAttr('hidden');
+				$(antiSelector).attr('hidden', true);
 			}
     	};
     	$('.answer-box').on('click', toggleAnswer);
