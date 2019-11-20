@@ -9,6 +9,16 @@ h2 {
 	font-size: 25px;
 	font-weight: bold;
 }
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
 .horizontal-rule {
 	border: 3px solid #F3F3F3;
 	margin: 20px 0;
@@ -76,4 +86,30 @@ h3 {
     font-weight: bold;
     cursor: pointer;
     color: #27A4BB;
+}
+
+h1 {
+    font-size: 25px;
+    margin-bottom: 0;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.jumbotron {
+    height: 208px;
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.sub-text {
+    font-size: 9px;
+    color: #8E8E8E;
+    margin: auto auto 0;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
 }
