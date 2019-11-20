@@ -1,5 +1,5 @@
 body {
-	font-family: Helvetica;
+	font-family: Helvetica Neue;
 	font-size: 15px;
 }
 span {
@@ -7,7 +7,7 @@ span {
 }
 h2 {
 	font-size: 25px;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 .white-text {
@@ -77,13 +77,13 @@ h2 {
 }
 
 h3 {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 15px;
     margin-top: 30px;
 }
 
 .link-text {
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     color: #27A4BB;
 }
@@ -92,17 +92,31 @@ h1 {
     font-size: 25px;
     margin-bottom: 0;
     color: #FFFFFF;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .jumbotron {
     height: 208px;
+    margin-bottom: 0;
+    background-image: url('hero.png');
+    background-size: cover;
 }
 
 .center-text {
     display: flex;
     justify-content: center;
     margin: 0 auto 10px;
+}
+
+.nav-bar {
+    height: 59px;
+    -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+   -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+    box-shadow: 0 0 0 4px white, 0 6px 4px black;
+}
+
+.flex {
+    display: flex;
 }
 
 .sub-text {
