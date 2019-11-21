@@ -142,3 +142,12 @@ h1 {
     justify-content: center;
     text-transform: uppercase;
 }
+
+.disabled {
+    opacity: .25;
+    cursor: not-allowed;
+}
+
+.disabled .answer-box {
+    cursor: not-allowed;
+}

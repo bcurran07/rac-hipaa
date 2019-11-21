@@ -22,10 +22,10 @@
         <div class="row nav-bar">
             <div class="col-12">
                 <div class="flex mx-auto">
-                    <div class="nav-element">HIPAA <i class="far fa-square"></i></div>
-                    <div class="nav-element">FD&C <i class="far fa-square"></i></div>
-                    <div class="nav-element">FTC <i class="far fa-square"></i></div>
-                    <div class="nav-element">FTC BREACH <i class="far fa-square"></i></div>
+                    <div class="nav-element">HIPAA <i class="far fa-square hipaa"></i></div>
+                    <div class="nav-element">FD&C <i class="far fa-square fdc"></i></div>
+                    <div class="nav-element">FTC <i class="far fa-square ftc"></i></div>
+                    <div class="nav-element">FTC BREACH <i class="far fa-square ftc-breach"></i></div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
 		    </div>
 		    <div class="horizontal-rule"></div>
 	    </div>
-	    <div class="row">
+	    <div class="row question-1">
 	    	<div class="col-1 teal-text">1</div>
 	    	<div class="col-9">Do you create, receive, maintain, or transmit identifiable health information?</div>
 	    	<div class="col-2 pull-right">
@@ -53,7 +53,7 @@
 	    	</div>
 		    <div class="horizontal-rule"></div>
 	    </div>
-        <div class="row">
+        <div class="row question-2">
         	<div class="col-1 teal-text">2</div>
         	<div class="col-9">Are you a health care provider or health plan?</div>
         	<div class="pull-right">
@@ -78,7 +78,7 @@
         <div class="row">
 		    <div class="horizontal-rule"></div>
 	   </div>
-        <div class="row">
+        <div class="row question-3">
         	<div class="col-1 teal-text">3</div>
         	<div class="col-9">Do consumers need a prescription to access your app?</div>
         	<div class="pull-right">
@@ -103,7 +103,7 @@
     	<div class="row">
 		    <div class="horizontal-rule"></div>
 		</div>
-        <div class="row">
+        <div class="row question-4">
         	<div class="col-1 teal-text">4</div>
         	<div class="col-9">Are you developing this app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)?</div>
         	<div class="pull-right">
@@ -132,7 +132,7 @@
     	    </div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-5">
         	<div class="col-1 teal-text">5</div>
         	<div class="col-9">Is your app intended for use in the diagnosis of disease or other conditions, or in the cure, mitigation, treatment or prevention of disease?</div>
         	<div class="pull-right">
@@ -149,7 +149,7 @@
     	    </div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-6">
         	<div class="col-1 teal-text">6</div>
         	<div class="col-9">Does your app pose "minimal risk" to a user?</div>
         	<div class="pull-right">
@@ -160,7 +160,7 @@
         	</div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-7">
         	<div class="col-1 teal-text">7</div>
         	<div class="col-9">Is your app a "mobile medical app?"</div>
         	<div class="pull-right">
@@ -186,7 +186,7 @@
     	    </div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-8">
         	<div class="col-1 teal-text">8</div>
         	<div class="col-9">Are you a nonprofit organization?</div>
         	<div class="pull-right">
@@ -220,7 +220,7 @@
     	    </div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-9">
         	<div class="col-1 teal-text">9</div>
         	<div class="col-9">Are you developing this app as or on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)? </div>
         	<div class="pull-right">
@@ -231,7 +231,7 @@
         	</div>
 		    <div class="horizontal-rule"></div>
         </div>
-        <div class="row">
+        <div class="row question-10">
         	<div class="col-1 teal-text">10</div>
         	<div class="col-9">Do you offer health records directly to consumers (or do you interact with or offer services to someone who does)?</div>
         	<div class="pull-right">
@@ -301,25 +301,56 @@
     		'4': 'Y',
     		'7': 'Y',
     		'10': 'Y',
-    	}
+    	};
+        const disableMap = {'1': { 'N': ['2', '3', '4'] }, '2': { 'Y': ['3', '4'] }, '3': { 'Y': ['4'] }, '5': { 'N': ['6', '7'] }, '6': { 'Y': ['7'] }, '9': { 'Y': ['10'] } };
+        const navOptions = ['hipaa', 'fdc', 'ftc', 'ftc-breach'];
+
     	const toggleAnswer = e => {
+            if ($(`.question-${e.target.title}`).hasClass('disabled')) {
+                return;
+            }
     		if (answers[e.target.title]) {
     			$(`div[title="${e.target.title}"]`).removeClass('answer-box-selected');
     		}
 			answers[e.target.title] = e.target.textContent;
 			$(e.target).toggleClass('answer-box-selected');
-			let selector = `.additional-text-${e.target.title}`;				
-			if (additionalTextMap[e.target.title] === e.target.textContent) {
-				$(selector).removeAttr('hidden');
-			} else if (additionalTextMap[e.target.title]) {
-				$(selector).attr('hidden', true);
-			} else if (e.target.title === '8') {
-				selector = `.additional-text-${e.target.title}-${e.target.textContent}`;
-				const antiSelector = `.additional-text-${e.target.title}-${e.target.textContent === 'Y' ? 'N' : 'Y'}`;
-				$(selector).removeAttr('hidden');
-				$(antiSelector).attr('hidden', true);
-			}
+            showOrHideAdditionalText(e.target.title, e.target.textContent);
+            toggleDisable(e.target.title, e.target.textContent);
+            computeNavBar();
     	};
+
+        const showOrHideAdditionalText = (answerNumber, answerValue) => {
+            let selector = `.additional-text-${answerNumber}`;                
+            if (additionalTextMap[answerNumber] === answerValue) {
+                $(selector).removeAttr('hidden');
+            } else if (additionalTextMap[answerNumber]) {
+                $(selector).attr('hidden', true);
+            } else if (answerNumber === '8') {
+                selector = `.additional-text-${answerNumber}-${answerValue}`;
+                const antiSelector = `.additional-text-${answerNumber}-${answerValue === 'Y' ? 'N' : 'Y'}`;
+                $(selector).removeAttr('hidden');
+                $(antiSelector).attr('hidden', true);
+            }
+        };
+        
+        const toggleDisable = (newQuestion, newAnswer) => {
+            const inverseAnswer = newAnswer === 'Y' ? 'N' : 'Y';
+            if (disableMap[newQuestion] && disableMap[newQuestion][newAnswer]) {
+                disableMap[newQuestion][newAnswer].forEach(answer => {
+                    $(`.question-${answer}`).addClass('disabled');
+                });
+            } else if (disableMap[newQuestion] && disableMap[newQuestion][inverseAnswer]) {
+                disableMap[newQuestion][inverseAnswer].forEach(answer => {
+                    $(`.question-${answer}`).removeClass('disabled');
+                });
+            }
+        }
+
+        const computeNavBar = () => {
+            Object.keys(answers).map(answerNumber => {
+
+            });
+        };
     	$('.answer-box').on('click', toggleAnswer);
     </script>
   </body>
