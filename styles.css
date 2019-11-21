@@ -58,6 +58,11 @@ h2 {
 .gray-background {
     background: #F7F7F7;
     padding: 20px 0;
+    margin-top: 5px;
+}
+
+.mx-auto {
+    width: 796px;
 }
 
 .gray-background > .mx-auto > p {
@@ -105,24 +110,34 @@ h1 {
 .center-text {
     display: flex;
     justify-content: center;
-    margin: 0 auto 10px;
+    margin: 0 auto 5px;
 }
 
 .nav-bar {
     height: 59px;
-    -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-   -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-    box-shadow: 0 0 0 4px white, 0 6px 4px black;
+    color: #8E8E8E;
+    font-size: 18px;
+    padding-top: 15px;
+    box-shadow: 0 8px 6px -6px #8E8E8E;
+}
+
+.nav-element {
+    margin-right: 30px;
+}
+
+.nav-element:last-child {
+    margin-right: 250px;
 }
 
 .flex {
     display: flex;
+    justify-content: space-between;
 }
 
 .sub-text {
     font-size: 9px;
     color: #8E8E8E;
-    margin: auto auto 0;
+    margin: auto auto;
     display: flex;
     justify-content: center;
     text-transform: uppercase;
