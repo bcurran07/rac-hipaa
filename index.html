@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/ee27f96efc.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   </head>
   <body>
   	<div class="container-fluid">
@@ -182,7 +183,7 @@
         </div>
         <div class="row question-6">
         	<div class="col-1 teal-text">6</div>
-        	<div class="col-9">Does your app pose "minimal risk" to a user?</div>
+        	<div class="col-9">Does your app pose "minimal risk" to a user? <span data-content='<p>- Use as an accessory to a regulated medical device (for example, an app that alters the function or settings of an infusion pump)</p><p>- Transforming a mobile platform into a regulated medical device (for example, an app that uses an attachment to the mobile platform to measure blood glucose levels)</p><p>- Performing sophisticated analysis or interpreting data from another medical device (for example, an app that uses consumer-specific parameters and creates a dosage plan for radiation therapy)</p>' class="info-icon rounded-circle" title="6">i</span></div>
         	<div class="pull-right">
         		<div class="pull-right">
     	    		<div class="answer-box" title="6">Y</div>
@@ -193,7 +194,7 @@
         </div>
         <div class="row question-7">
         	<div class="col-1 teal-text">7</div>
-        	<div class="col-9">Is your app a "mobile medical app?"</div>
+        	<div class="col-9">Is your app a "mobile medical app?" <span data-content='<p>- Helping users self-manage their disease or condition without providing specific treatment suggestions;</p><p>- Providing users with simple tools to organize and track their health information;</p><p>- Providing easy access to information related to health conditions or  treatments;</p><p>- Helping users document, show or communicate potential medical conditions to health care providers;</p><p>- Automating simple tasks for health care providers;</p><p>- Enabling users or providers to interact with Personal Health Records (PHR) or Electronic Health Record (EHR) systems; and</p><p>- Transferring, storing, converting format or displaying medical device data, as defined by the FDA’s Medical Device Data Systems regulations.</p>' class="info-icon rounded-circle" title="7">i</span></div>
         	<div class="pull-right">
         		<div class="pull-right">
     	    		<div class="answer-box" title="7">Y</div>
@@ -423,6 +424,8 @@
             },
         };
 
+        const question7Info = '';
+
     	const toggleAnswer = e => {
             if ($(`.question-${e.target.title}`).hasClass('disabled')) {
                 return;
@@ -482,6 +485,12 @@
             });
         };
     	$('.answer-box').on('click', toggleAnswer);
+        $('.info-icon').popover({
+            container: 'body',
+            placement: 'bottom',
+            html: true,
+            template: '<div class="popover" role="tooltip"><div class="popover-body"></div></div>',
+          });
     </script>
   </body>
 </html>
