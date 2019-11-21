@@ -117,16 +117,17 @@ h1 {
     height: 59px;
     color: #8E8E8E;
     font-size: 18px;
-    padding-top: 15px;
+    padding-top: 11px;
     box-shadow: 0 8px 6px -6px #8E8E8E;
 }
 
 .nav-element {
-    margin-right: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-element:last-child {
-    margin-right: 250px;
+    margin-right: 200px;
 }
 
 .flex {
@@ -150,4 +151,31 @@ h1 {
 
 .disabled .answer-box {
     cursor: not-allowed;
+}
+
+.icon-container {
+    width: 0 !important;
+}
+
+.nav-element-text {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.fa-times {
+    margin-left: 2.5px;
+}
+
+.fa-check {
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+.gray-box {
+    color: black;
+    opacity: 0.2;
+}
+
+.blue-box {
+    color: #27A4BB;
 }

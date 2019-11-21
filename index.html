@@ -22,10 +22,41 @@
         <div class="row nav-bar">
             <div class="col-12">
                 <div class="flex mx-auto">
-                    <div class="nav-element">HIPAA <i class="far fa-square hipaa"></i></div>
-                    <div class="nav-element">FD&C <i class="far fa-square fdc"></i></div>
-                    <div class="nav-element">FTC <i class="far fa-square ftc"></i></div>
-                    <div class="nav-element">FTC BREACH <i class="far fa-square ftc-breach"></i></div>
+                    <div class="nav-element">
+                        <span class="nav-element-text">HIPAA</span>
+                        <span class="fa-stack fa-1x icon-container">
+                          <i class="far fa-square fa-stack-1x"></i>
+                          <i class="fab fa-stack-1x hipaa"></i>
+                        </span>
+                    </div>
+                    <div class="nav-element">
+                        <span class="nav-element-text">FD&C</span>
+                        <span class="fa-stack fa-1x icon-container">
+                          <i class="far fa-square fa-stack-1x"></i>
+                          <i class="fab fa-stack-1x fdc"></i>
+                        </span>
+                    </div>
+                    <div class="nav-element">
+                        <span class="nav-element-text">FDA</span> 
+                        <span class="fa-stack fa-1x icon-container">
+                          <i class="far fa-square fa-stack-1x"></i>
+                          <i class="fab fa-stack-1x fda"></i>
+                        </span>
+                    </div>
+                    <div class="nav-element">
+                        <span class="nav-element-text">FTC</span> 
+                        <span class="fa-stack fa-1x icon-container">
+                          <i class="far fa-square fa-stack-1x"></i>
+                          <i class="fab fa-stack-1x ftc"></i>
+                        </span>
+                    </div>
+                    <div class="nav-element">
+                        <span class="nav-element-text">FTC BREACH</span> 
+                        <span class="fa-stack fa-1x icon-container">
+                          <i class="far fa-square fa-stack-1x"></i>
+                          <i class="fab fa-stack-1x ftc-breach"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -303,7 +334,94 @@
     		'10': 'Y',
     	};
         const disableMap = {'1': { 'N': ['2', '3', '4'] }, '2': { 'Y': ['3', '4'] }, '3': { 'Y': ['4'] }, '5': { 'N': ['6', '7'] }, '6': { 'Y': ['7'] }, '9': { 'Y': ['10'] } };
-        const navOptions = ['hipaa', 'fdc', 'ftc', 'ftc-breach'];
+        const navMap = {
+            'hipaa': {
+                '1': {
+                    'N': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                },
+                '2': {
+                    'Y': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',
+                    }
+                },
+                '3': {
+                    'Y': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',
+                    }
+                },
+                '4': {
+                    'N': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                },
+            }, 
+            'fdc': {
+                '5': {
+                    'Y': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',
+                    },
+                    'N': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                },
+            },
+            'fda': {
+                '6': {
+                    'Y': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                },
+                '7': {
+                    'Y': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',
+                    },
+                    'N': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                }
+            },
+            'ftc': {
+                '8': {
+                    'Y': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    },
+                    'N': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',                        
+                    }
+                }
+            }, 
+            'ftc-breach': {
+                '9': {
+                    'Y': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                },
+                '10': {
+                    'Y': {
+                        'icon': 'fas fa-check white-text',
+                        'square': 'blue-box fas fa-square-full',
+                    },
+                    'N': {
+                        'icon': 'fas fa-times white-text',
+                        'square': 'gray-box fas fa-square-full',
+                    }
+                }
+            },
+        };
 
     	const toggleAnswer = e => {
             if ($(`.question-${e.target.title}`).hasClass('disabled')) {
@@ -316,7 +434,7 @@
 			$(e.target).toggleClass('answer-box-selected');
             showOrHideAdditionalText(e.target.title, e.target.textContent);
             toggleDisable(e.target.title, e.target.textContent);
-            computeNavBar();
+            computeNavBar(e.target.title, e.target.textContent);
     	};
 
         const showOrHideAdditionalText = (answerNumber, answerValue) => {
@@ -346,9 +464,21 @@
             }
         }
 
-        const computeNavBar = () => {
-            Object.keys(answers).map(answerNumber => {
-
+        const computeNavBar = (newQuestion, newAnswer) => {
+            const inverseAnswer = newAnswer === 'Y' ? 'N' : 'Y';
+            Object.keys(navMap).forEach(nav => {
+                if (navMap[nav][newQuestion] && navMap[nav][newQuestion][newAnswer]) {
+                    const inverseOption = navMap[nav][newQuestion][inverseAnswer];
+                    $(`.${nav}`).removeClass(
+                        $(`.${nav}`).removeClass(inverseOption && $(`.${nav}`).hasClass(inverseOption.icon) && inverseOption.icon)
+                    ).addClass(navMap[nav][newQuestion][newAnswer].icon);
+                    $(`.${nav}`).prev().removeClass(
+                        inverseOption && $(`.${nav}`).prev().hasClass(inverseOption.square) ? inverseOption.square : 'square'
+                    ).addClass(navMap[nav][newQuestion][newAnswer].square);
+                } else if (navMap[nav][newQuestion]) {
+                    $(`.${nav}`).removeClass(navMap[nav][newQuestion][inverseAnswer].icon);
+                    $(`.${nav}`).prev().addClass('square').removeClass(navMap[nav][newQuestion][inverseAnswer].square);
+                }
             });
         };
     	$('.answer-box').on('click', toggleAnswer);
