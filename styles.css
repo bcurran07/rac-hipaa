@@ -30,6 +30,10 @@ h2 {
 .teal-text {
 	color: #27A4BB;
 }
+
+.teal-text:hover {
+    color: #27A4BB;
+}
 .answer-box {
 	border: 1px solid #8E8E8E;
 	color: #27A4BB;
