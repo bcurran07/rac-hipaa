@@ -198,3 +198,16 @@ h1 {
     padding: 20px;
 }
 
+.side-nav-link {
+    cursor: pointer;
+}
+
+.side-nav-container {
+    background: #F4F9FA;
+    color: #0C5967;
+    width: 372px;
+    height: 389px;
+    position: absolute;
+    z-index: 2;
+}
+

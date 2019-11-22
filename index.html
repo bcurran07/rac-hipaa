@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   </head>
   <body>
+    <div class="side-nav-container" hidden>
+        asdf
+    </div>
   	<div class="container-fluid">
   		<div class="row jumbotron">
             <div class="mx-auto center">
@@ -100,9 +103,9 @@
         	<div class="col-11 pull-right">
         		<div class="gray-background additional-text-2 hidden-text" hidden>
         			<p><em>You likely are a HIPAA covered entity subject to the HIPAA rules.</em></p>
-        			<p><a class="teal-text" href="#"><strong>HIPAA PRIVACY RULE <i class="fas fa-arrow-right"></i></strong></a></p>
-        			<p><a class="teal-text" href="#"><strong>HIPAA SECURITY RULE <i class="fas fa-arrow-right"></i></strong></a></p>
-        			<p><a class="teal-text" href="#"><strong>HIPAA BREACH NOTIFICATION RULE <i class="fas fa-arrow-right"></i></strong></a></p>
+        			<p><strong class="teal-text side-nav-link" title="hipaa-privacy">HIPAA PRIVACY RULE <i class="fas fa-arrow-right"></i></strong></p>
+        			<p><a class="teal-text side-nav-link" href="#" title="hipaa-security"><strong>HIPAA SECURITY RULE <i class="fas fa-arrow-right"></i></strong></a></p>
+        			<p><a class="teal-text side-nav-link" href="#" title="hipaa-breach"><strong>HIPAA BREACH NOTIFICATION RULE <i class="fas fa-arrow-right"></i></strong></a></p>
         			<p>For additional guidance on whether HIPAA applies to your mobile app, see OCR's health app developer portal.</p>
         		</div>
         	</div>
@@ -303,7 +306,7 @@
 				<p class="link-text"><a>Health Information Privacy, Business Associates, Frequently Asked Questions; and</a></p>
 				<p class="link-text"><a>Health Information Privacy, Understanding HIPAA Privacy for Covered Entities and Business Associates, Sample Business Associate Agreement Provisions.</a></p>
 				<h3>PROTECTED HEALTH INFORMATION (PHI)</h3>
-				<p>Identifiable health information maintained or transmitted by a covered entity or its business associate, in any form or media, whether electronic, paper, or oral. <a href="www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html">www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html</a></p>
+				<p>Identifiable health information maintained or transmitted by a covered entity or its business associate, in any form or media, whether electronic, paper, or oral. <a class="teal-text" href="www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html"><strong>www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html</strong></a></p>
 				<h3>MEDICAL DEVICE</h3>
 				<p>A medical device is an instrument, apparatus, implement, machine, contrivance, implant, in vitro reagent, or other similar or related article, including a component part, or accessory which is:</p>
 				<p>– Recognized in the official National Formulary, or the United States Pharmacopoeia, or any supplement to them,</p>
@@ -311,7 +314,7 @@
 				<p>– Intended to affect the structure or any function of the body of man or other animals, and which does not achieve its primary intended purposes through chemical action within or on the body of man or other animals and which is not dependent upon being metabolized for the achievement of any of its primary intended purposes.</p>
 				<h3>MOBILE MEDICAL APP</h3>
 				<p>To determine if you are a mobile medical app, see Section V.A. of the FDA’s Mobile Medical Applications Guidance for Industry and Food and Drug Administration Staff [PDF] (“Mobile medical apps: Subset of mobile apps that are the focus of FDA’s regulatory oversight”) to identify the types of apps that FDA intends to oversee actively, and see Appendix C of the FDA’s Mobile Medical Applications Guidance for Industry and Food and Drug Administration Staff [PDF] (“Examples of mobile apps that are the focus of FDA’s regulatory oversight (mobile medical apps)”), which provides examples of apps that are mobile medical devices. You can also visit the Mobile Medical Applications website.</p>
-				<p>If you have further questions in determining whether your app is a medical device, email <a href="mailto:mobilemedicalapps@fda.hhs.gov">mobilemedicalapps@fda.hhs.gov</a> or contact the FDA via Device Advice: Comprehensive Regulatory Assistance; CDRH Division of Small Manufacturers, International and Consumer Assistance (DSMICA).</p>
+				<p>If you have further questions in determining whether your app is a medical device, email <a class="teal-text" href="mailto:mobilemedicalapps@fda.hhs.gov"><strong>mobilemedicalapps@fda.hhs.gov</strong></a> or contact the FDA via Device Advice: Comprehensive Regulatory Assistance; CDRH Division of Small Manufacturers, International and Consumer Assistance (DSMICA).</p>
 				<h3>Personal health records (PHR) provider, PHR-related entity, or service provider</h3>
 				<strong>PHR provider </strong>
 				<p>A PHR provider offers PHRs – electronic health records that can be drawn from multiple sources and that are managed, shared, and controlled primarily by or for the individual – directly to consumers.</p>
@@ -491,6 +494,15 @@
             html: true,
             template: '<div class="popover" role="tooltip"><div class="popover-body"></div></div>',
           });
+
+        $('.side-nav-link').on('click', () => {
+            $('.side-nav-container').removeAttr('hidden').css({ 
+                position: 'absolute', 
+                right: 0, 
+                top: `${(document.documentElement.scrollTop || document.body.scrollTop) + 200}px` 
+            });
+        });
+
         $(window).scroll(function(e){
           const $el = $('.nav-bar'); 
           const isPositionFixed = ($el.css('position') === 'fixed');
