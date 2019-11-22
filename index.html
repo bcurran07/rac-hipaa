@@ -491,6 +491,16 @@
             html: true,
             template: '<div class="popover" role="tooltip"><div class="popover-body"></div></div>',
           });
+        $(window).scroll(function(e){
+          const $el = $('.nav-bar'); 
+          const isPositionFixed = ($el.css('position') === 'fixed');
+          if ($(this).scrollTop() > 210 && !isPositionFixed){ 
+            $el.css({'position': 'fixed', 'top': '0px', 'background': '#FFFFFF', width: '100%', zIndex: '1'}); 
+          }
+          if ($(this).scrollTop() < 210 && isPositionFixed){
+            $el.css({'position': 'static', 'top': '0px', 'width': ''}); 
+          } 
+        });
     </script>
   </body>
 </html>
