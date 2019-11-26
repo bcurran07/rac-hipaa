@@ -180,6 +180,10 @@ h1 {
     opacity: 0.2;
 }
 
+.large {
+    font-size: 20px;
+}
+
 .blue-box {
     color: #27A4BB;
 }
@@ -256,3 +260,47 @@ li {
     margin-right: 20px;
 }
 
+.black-button {
+    background: #000000;
+    height: 63px;
+    width: 290px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-body {
+    padding: 0 3rem 3rem;
+}
+
+.modal-footer {
+    border-top: none;
+    justify-content: flex-start;
+}
+
+.modal-content {
+    width: 708px;
+}
+
+.modal-results {
+    width: 400px;
+}
+
+form {
+    width: 575px;
+}
+
+input[type="text"] {
+    width: 279px;
+    height: 62px;
+    background: #F3F3F3;
+    border: none;
+    padding-left: 20px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}

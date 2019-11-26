@@ -10,6 +10,96 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   </head>
   <body>
+    <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h2>YOUR RESULTS!</h2>
+            <p>Based on the information you provided, your mobile app is likely regulated by the following regulations: </p>
+            <div class="flex modal-results">
+                <div class="modal-hipaa">
+                    <strong>HIPAA</strong> <i></i>
+                </div>
+                <div class="modal-fdc">
+                    <strong>FD&C</strong> <i></i>
+                </div>
+                <div class="modal-fda">
+                    <strong>FDA</strong> <i></i>
+                </div>
+                <div class="modal-ftc">
+                    <strong>FTC</strong> <i></i>
+                </div>
+                <div class="modal-ftc-breach">
+                    <strong>FTC BREACH</strong> <i></i>
+                </div>
+            </div>
+            <p></p>
+            <p>To learn more about these regulations and to find out how we can help, fill out the form below and we will contact you shortly.</p>
+            <form>
+                <div class="flex">
+                    <input type="text" name="name" placeholder="Name" />
+                    <input type="text" name="email" placeholder="Email" />
+                </div>
+                <br />
+                <div class="flex">
+                    <input type="text" name="company" placeholder="Company (optional)" />
+                    <input type="text" name="project" placeholder="What are you developing?" />
+                </div>
+                <br />
+                <div>
+                    <p>What services are you looking for?</p>
+                    <ul class="unstyled">
+                        <li>
+                            <span class="fa-stack fa-1x icon-container modal-checkbox">
+                              <i class="far fa-square fa-stack-1x gray-box large"></i>
+                              <i class="fab fas teal-text fa-stack-1x" name="product-development"></i>
+                            </span>
+                            <input type="hidden" name="product-development"/>&nbsp;&nbsp;&nbsp;&nbsp; <label>General product development</label>
+                        </li>
+                        <li>
+                            <span class="fa-stack fa-1x icon-container modal-checkbox">
+                              <i class="far fa-square fa-stack-1x gray-box large"></i>
+                              <i class="fab fas teal-text fa-stack-1x" name="regulatory"></i>
+                            </span>
+                            <input type="hidden" name="regulatory"/>&nbsp;&nbsp;&nbsp;&nbsp; <label>Regulatory</label>
+                        </li>
+                        <li>
+                            <span class="fa-stack fa-1x icon-container modal-checkbox">
+                              <i class="far fa-square fa-stack-1x gray-box large"></i>
+                              <i class="fab fas teal-text fa-stack-1x" name="quality"></i>
+                            </span>
+                            <input type="hidden" name="quality"/>&nbsp;&nbsp;&nbsp;&nbsp; <label>Quality</label>
+                        </li>
+                        <li>
+                            <span class="fa-stack fa-1x icon-container modal-checkbox">
+                              <i class="far fa-square fa-stack-1x gray-box large"></i>
+                              <i class="fab fas teal-text fa-stack-1x" name="ip"></i>
+                            </span>
+                            <input type="hidden" name="ip"/>&nbsp;&nbsp;&nbsp;&nbsp; <label>IP</label>
+                        </li>
+                        <li>
+                            <span class="fa-stack fa-1x icon-container modal-checkbox">
+                              <i class="far fa-square fa-stack-1x gray-box large"></i>
+                              <i class="fab fas teal-text fa-stack-1x marketing"></i>
+                            </span>
+                            <input type="hidden" name="marketing"/>&nbsp;&nbsp;&nbsp;&nbsp; <label>Marketing</label>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary black-button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="side-nav-container" hidden>
         <div class="side-nav-header">
             <ul class="unstyled">
@@ -346,6 +436,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
     	const answers = {};
+        const lawsState = {};
     	const additionalTextMap = {
     		'2': 'Y',
     		'3': 'Y',
@@ -479,8 +570,6 @@
 
         };
 
-        const question7Info = '';
-
     	const toggleAnswer = e => {
             if ($(`.question-${e.target.title}`).hasClass('disabled')) {
                 return;
@@ -493,7 +582,17 @@
             showOrHideAdditionalText(e.target.title, e.target.textContent);
             toggleDisable(e.target.title, e.target.textContent);
             computeNavBar(e.target.title, e.target.textContent);
+            computeModal();
     	};
+
+        const computeModal = () => {
+            $('.modal').modal();
+            Object.keys(lawsState).map(key => {
+                const icon = lawsState[key].icon.includes('check') ? 'fas fa-check' : 'fas fa-times';
+                $(`.modal-${key} > i`).addClass(icon);
+                $(`.modal-${key}`).addClass(icon.includes('check') && 'teal-text');
+            });
+        };
 
         const showOrHideAdditionalText = (answerNumber, answerValue) => {
             let selector = `.additional-text-${answerNumber}`;                
@@ -533,9 +632,11 @@
                     $(`.${nav}`).prev().removeClass(
                         inverseOption && $(`.${nav}`).prev().hasClass(inverseOption.square) ? inverseOption.square : 'square'
                     ).addClass(navMap[nav][newQuestion][newAnswer].square);
+                    lawsState[nav] = navMap[nav][newQuestion][newAnswer];
                 } else if (navMap[nav][newQuestion]) {
                     $(`.${nav}`).removeClass(navMap[nav][newQuestion][inverseAnswer].icon);
                     $(`.${nav}`).prev().addClass('square').removeClass(navMap[nav][newQuestion][inverseAnswer].square);
+                    lawsState[nav] = null;
                 }
             });
         };
@@ -558,6 +659,19 @@
 
         $('.cancel').on('click', () => {
             $('.side-nav-container').attr('hidden', true);
+        });
+
+        $('.modal-checkbox').on('click', e => {
+            e.preventDefault();
+            if ($(e.target).hasClass('fa-check')) {
+                $(e.target).removeClass('fa-check');
+                $(`input[name="${e.target.name}"]`).val('false');
+            } else {
+                $(e.target).next().addClass('fa-check');
+                console.log($(e.target).next().attr('name'))
+                $(`input[name="${$(e.target).next().attr('name')}"]`).val('true');
+
+            }
         });
 
         $(window).scroll(function(e){
