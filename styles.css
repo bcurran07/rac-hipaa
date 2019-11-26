@@ -200,14 +200,59 @@ h1 {
 
 .side-nav-link {
     cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .side-nav-container {
     background: #F4F9FA;
     color: #0C5967;
     width: 372px;
-    height: 389px;
     position: absolute;
     z-index: 2;
+    right: 0;
+}
+
+.side-nav-header {
+    background: #E3F0F2;
+    padding: 20px 0;
+}
+
+.side {
+    background: #E3F0F2;
+}
+
+.unstyled {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.side-nav-title {
+    color: #0C5967;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.side-nav-text {
+    color: #0C5967;
+    font-size: 12px;
+}
+
+.side-nav-content {
+    padding: 40px;
+}
+
+.black {
+    color: #000000;
+}
+
+.cancel {
+    margin-left: auto;
+    margin-right: 20px;
 }
 

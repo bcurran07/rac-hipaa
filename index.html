@@ -11,7 +11,23 @@
   </head>
   <body>
     <div class="side-nav-container" hidden>
-        asdf
+        <div class="side-nav-header">
+            <ul class="unstyled">
+                <li class="nav-element"><span class="teal-text side-nav-link" title="hipaa">HIPAA</span> <i class="fas fa-times black cancel"></i></li>
+                <li class="teal-text side-nav-link" title="hipaa-privacy">The HIPAA Privacy Rule</li>
+                <li class="teal-text side-nav-link" title="hipaa-security">The HIPAA Security Rule</li>
+                <li class="teal-text side-nav-link" title="hipaa-breach">The HIPAA Breach Notification Rule</li>
+                <li class="teal-text side-nav-link" title="ftc-act">FTC Act</li>
+                <li class="teal-text side-nav-link" title="ftc-breach">FTC's Health Breach Notification Rule</li>
+                <li class="teal-text side-nav-link" title="fdc-act">FD&C Act</li>
+                <li class="teal-text side-nav-link" title="fda-info">FDA Information</li>
+                <li title="additional-info"><a class="teal-text" target="_blank" href="https://hipaaqsportal.hhs.gov"><strong>Additional Information</strong></a></li>
+            </ul>
+        </div>
+        <div class="side-nav-content">
+            <div class="side-nav-title"></div>
+            <div class="side-nav-text"></div>
+        </div>
     </div>
   	<div class="container-fluid">
   		<div class="row jumbotron">
@@ -104,8 +120,8 @@
         		<div class="gray-background additional-text-2 hidden-text" hidden>
         			<p><em>You likely are a HIPAA covered entity subject to the HIPAA rules.</em></p>
         			<p><strong class="teal-text side-nav-link" title="hipaa-privacy">HIPAA PRIVACY RULE <i class="fas fa-arrow-right"></i></strong></p>
-        			<p><a class="teal-text side-nav-link" href="#" title="hipaa-security"><strong>HIPAA SECURITY RULE <i class="fas fa-arrow-right"></i></strong></a></p>
-        			<p><a class="teal-text side-nav-link" href="#" title="hipaa-breach"><strong>HIPAA BREACH NOTIFICATION RULE <i class="fas fa-arrow-right"></i></strong></a></p>
+        			<p><strong class="teal-text side-nav-link" title="hipaa-security">HIPAA SECURITY RULE <i class="fas fa-arrow-right"></i></strong></p>
+        			<p><strong class="teal-text side-nav-link" title="hipaa-breach">HIPAA BREACH NOTIFICATION RULE <i class="fas fa-arrow-right"></i></strong></p>
         			<p>For additional guidance on whether HIPAA applies to your mobile app, see OCR's health app developer portal.</p>
         		</div>
         	</div>
@@ -427,6 +443,42 @@
             },
         };
 
+        const sideNavMap = {
+            'hipaa': {
+                'title': 'HIPAA',
+                'content': 'Health Insurance Portability and Accountability Act (HIPAA). The Office for Civil Rights (OCR) within the U.S. Department of Health & Human Services (HHS) enforces the HIPAA rules, which protect the privacy and security of certain health information and require certain entities to provide notifications of health information breaches.',
+            },
+            'hipaa-privacy': {
+                'title': 'The HIPAA Privacy Rule',
+                'content': 'The HIPAA Privacy Rule requires appropriate safeguards to protect the privacy of identifiable health information (called protected health information or PHI when maintained or transmitted by a HIPAA covered entity or business associate), and sets limits and conditions on the uses and disclosures that may be made of such information without consumer authorization. The Rule also gives consumers rights over their health information, including rights to examine and obtain a copy of their health records, as well as to direct the covered entity to transmit their health information directly to a person or entity of their choosing, such as a mobile health app. Business associates are only required to comply with certain provisions.', 
+            },
+            'hipaa-security': {
+                'title': 'The HIPAA Security Rule',
+                'content': 'The HIPAA Security Rule specifies a series of administrative, physical, and technical safeguards for covered entities and their business associates to use to assure the confidentiality, integrity, and availability of electronic PHI. Business associates must comply with the entire Security Rule.'
+            },
+            'hipaa-breach': {
+                'title': 'The HIPAA Breach Notification Rule',
+                'content': 'The HIPAA Breach Notification Rule requires covered entities to provide notification to consumers, the Secretary of HHS, and, in some cases, the media following a breach of unsecured PHI. Business associates must provide notice to the HIPAA covered entity.',
+            },
+            'ftc-act': {
+                'title': 'FTC Act',
+                'content': '<p>The FTC Act prohibits deceptive or unfair acts or practices. This means:</p><ul><li>You cannot make deceptive or misleading claims to consumers about things that are important to them; and</li><li>You cannot engage in acts or practices that cause, or are likely to cause, substantial injury to consumers that they cannot avoid, and that do more harm than good.</li><li>Here are some tips for how to protect consumers’ privacy and the security of their data. Here is some guidance for how to ensure your health benefit, safety, performance, and other claims are truthful, substantiated, and not misleading.</li></ul>'
+            },
+            'ftc-breach': {
+                'title': "FTC's Health Breach Notification Rule",
+                'content': 'If you are a PHR provider or PHR-related entity, the Health Breach Notification Rule requires you to notify affected consumers, the FTC, and in some cases, the media following a breach of unsecured personal health information. Service providers to PHR providers and PHR-related entities must notify these PHR providers and PHR-related entities.'
+            },
+            'fdc-act': {
+                'title': 'FD&C Act',
+                'content': 'Federal Food, Drug, and Cosmetic Act (FD&C Act).The FDA enforces the FD&C Act, which regulates the safety and effectiveness of medical devices, including certain mobile medical apps. The FDA focuses its regulatory oversight on a small subset of health apps that pose a higher risk if they don’t work as intended.'
+            },
+            'fda-info': {
+                'title': 'FDA Information',
+                'content': '<p>The FDA is focusing its regulatory oversight on a small subset of mobile apps that may impact the performance or functionality of currently regulated medical devices or may independently pose a greater risk to consumers if they don’t work as intended.</p><p>Mobile medical apps that undergo FDA review will be evaluated according to the same regulatory standards and risk-based approach that the agency applies to other medical devices.</p><p>The FDA classifies medical devices into three categories, Class I, Class II, and Class III, based on the risk the devices pose to consumers, intended use, and indications for use. Class I devices are considered low risk and subject to the least regulatory controls. Class II devices are moderate risk devices and require greater regulatory controls to provide reasonable assurance of the device’s safety and effectiveness, and Class III devices are generally the highest risk devices and subject to the highest level of regulatory control.</p><p>With a few exceptions, FDA evaluates Class II and Class III devices for their safety and effectiveness before they are allowed to be sold to the public though a premarket submission process. There are fees associated with filing a premarket submission. Medical device manufacturers, regardless of classification, will need to register their establishment and list the devices they market in the FDA’s device registration and listing database, and there are registration fees. In addition, the mobile medical app manufacturer must comply with all other relevant laws and regulations, such as Quality System (QS) Regulation/Medical Device Good Manufacturing Practices (“GMP”) and Medical Device Reporting.</p><p>The FDA links above can help you to determine your app’s classification and regulatory requirements. The FDA’s <a class="teal-text" href="mailto:MobileMedicalApps@fda.hhs.gov"><strong>MobileMedicalApps@fda.hhs.gov</strong></a> email address is dedicated to answering questions from manufacturers and app developers about FDA’s mobile app regulations.</p>'
+            }
+
+        };
+
         const question7Info = '';
 
     	const toggleAnswer = e => {
@@ -495,12 +547,17 @@
             template: '<div class="popover" role="tooltip"><div class="popover-body"></div></div>',
           });
 
-        $('.side-nav-link').on('click', () => {
-            $('.side-nav-container').removeAttr('hidden').css({ 
-                position: 'absolute', 
-                right: 0, 
-                top: `${(document.documentElement.scrollTop || document.body.scrollTop) + 200}px` 
-            });
+        $('.side-nav-link').on('click', e => {
+            const title = e.target.title;
+            $('.side-nav-container').removeAttr('hidden').
+                css({ top: `${(document.documentElement.scrollTop || document.body.scrollTop) + 200}px`, });
+
+            $('.side-nav-title').text(sideNavMap[title].title);
+            $('.side-nav-text').html(sideNavMap[title].content);
+        });
+
+        $('.cancel').on('click', () => {
+            $('.side-nav-container').attr('hidden', true);
         });
 
         $(window).scroll(function(e){
