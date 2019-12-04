@@ -586,12 +586,15 @@
     	};
 
         const computeModal = () => {
-            $('.modal').modal();
-            Object.keys(lawsState).map(key => {
-                const icon = lawsState[key].icon.includes('check') ? 'fas fa-check' : 'fas fa-times';
-                $(`.modal-${key} > i`).addClass(icon);
-                $(`.modal-${key}`).addClass(icon.includes('check') && 'teal-text');
-            });
+            if (Object.keys(lawsState).length === 5) {
+                $('.modal').modal();
+
+                Object.keys(lawsState).map(key => {
+                    const icon = lawsState[key].icon.includes('check') ? 'fas fa-check' : 'fas fa-times';
+                    $(`.modal-${key} > i`).addClass(icon);
+                    $(`.modal-${key}`).addClass(icon.includes('check') && 'teal-text');
+                });
+            }
         };
 
         const showOrHideAdditionalText = (answerNumber, answerValue) => {
