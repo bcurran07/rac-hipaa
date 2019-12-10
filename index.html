@@ -582,11 +582,13 @@
             showOrHideAdditionalText(e.target.title, e.target.textContent);
             toggleDisable(e.target.title, e.target.textContent);
             computeNavBar(e.target.title, e.target.textContent);
+            computeFdaQuestion(e.target.title, e.target.textContent);
             computeModal();
     	};
 
         const computeModal = () => {
-            if (Object.keys(lawsState).length === 5) {
+            const keys = Object.keys(lawsState);
+            if (keys.length === 5 && keys.every(key => !!lawsState[key])) {
                 $('.modal').modal();
 
                 Object.keys(lawsState).map(key => {
@@ -621,6 +623,13 @@
                 disableMap[newQuestion][inverseAnswer].forEach(answer => {
                     $(`.question-${answer}`).removeClass('disabled');
                 });
+            }
+        };
+
+        const computeFdaQuestion = (newQuestion, newAnswer) => {
+            if (newQuestion === '5' && newAnswer === 'N') {
+                computeNavBar('6', 'N');
+                computeNavBar('7', 'N');
             }
         }
 
